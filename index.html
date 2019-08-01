@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Accessibility through the eyes of users</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="shower/themes/ribbon/styles/styles.css">
+    <style>
+        .shower {
+            --slide-ratio: calc(16 / 9);
+            --main-theme: #28293d;
+            --white: #fafafa;
+            --color-grey: #fafafa;
+            --color-red: #df4576;
+            --color-green: #27e8a7;
+            /* blue: #9dbff8 */
+            --color-yellow: #feed73;
+
+            color: #fafafa;
+        }
+
+        .c-r {
+            color: var(--color-red) !important;
+        }
+
+        .c-g {
+            color: var(--color-green) !important;
+        }
+
+        .c-y {
+            color: var(--color-yellow) !important;
+        }
+
+        .caption {
+            color: var(--main-theme);
+        }
+
+        .slide {
+            background: var(--main-theme);
+        }
+
+        .slide:after {
+            background-image: none;
+            background-color: #5b8dee;
+            padding-top: 12px;
+            height: calc(var(--ribbon-size) * 1.5);
+        }
+    </style>
+    <style>
+        .counter {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding-top: 50px;
+        }
+
+        .counter-val {
+            width: 100%;
+            text-align: center;
+            font-size: 60px;
+        }
+
+        .btn-add,
+        .btn-remove {
+            text-align: center;
+            padding: 5px 25px;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+            position: relative;
+        }
+
+        .btn-add::before,
+        .btn-remove::before {
+            content: '';
+            width: 26px;
+            height: 26px;
+            background: white;
+            position: absolute;
+            left: 37%;
+            top: 30%;
+        }
+
+        .btn-add svg,
+        .btn-remove svg {
+            display: block;
+            position: relative;
+        }
+
+        .btn-add:focus,
+        .btn-add:active,
+        .btn-add:hover,
+        .btn-remove:focus,
+        .btn-remove:active,
+        .btn-remove:hover {
+            background: gainsboro;
+        }
+
+        .counter.blured {
+            filter: blur(4px);
+        }
+
+        .counter.normal .btn-add:focus,
+        .counter.normal .btn-add:active,
+        .counter.normal .btn-add:hover,
+        .counter.normal .btn-remove:focus,
+        .counter.normal .btn-remove:active,
+        .counter.normal .btn-remove:hover {
+            background: #5b8dee;
+        }
+    </style>
+</head>
+
+<body class="shower list">
+
+    <header class="caption">
+        <h1>Accessibility through the eyes of users</h1>
+        <p>Andrii Shtadler</p>
+    </header>
+
+    <section class="slide" id="1">
+        <h2>Accessibility through the eyes of users</h2>
+        <p>Are you a friendly developer?</p>
+        <figure>
+            <img class="place bottom right" src="pictures/cover.png" alt="Hands on the orange typewriter in a park">
+            <figcaption class="copyright right white">
+                <a href="https://www.facebook.com/profile.php?id=100004283014454">©Andrii Shtadler</a>
+            </figcaption>
+        </figure>
+        <style>
+            #1 h2 {
+                margin: 30px 0 0;
+                color: white;
+                text-align: center;
+                font-size: 70px;
+            }
+
+            #1 p {
+                margin: 10px 0 0;
+                text-align: center;
+                color: white;
+                font-style: italic;
+                font-size: 20px;
+            }
+
+            #1 p a {
+                color: white;
+            }
+        </style>
+    </section>
+
+    <section class="slide">
+        <h2>Why do customer need accessibility?</h2>
+        <ol>
+            <li class="next">Laws? eg (ADA in US)
+                <span class="next">- <b><a
+                            href="https://www.adatitleiii.com/2019/07/federal-ada-title-iii-lawsuit-numbers-continue-to-climb-in-2019/"
+                            class="c-r">5,592</a></b> ADA lawsuits filed in US from Jan 1 to June 30</span>
+                <br>
+                <span class="next">steep fines of up to <b class="c-y">$150,000</b></span>
+            </li>
+            <li class="next">Money?
+                <span class="next">- <b class="c-r">10% (750 mln)</b> global and <b class="c-r">26% (60 mln) in the
+                        US</b></span>
+            </li>
+            <li class="next">Hype and certificates - some marketing tricks</li>
+        </ol>
+    </section>
+
+    <section class="slide">
+        <h2 class="shout shrink" style="padding-left: 75px; margin-top: -100px;"><small style="font-size: 50%"
+                class="next">ANGRY</small> <br> Developer</h2>
+
+        <img src="pictures/angry-dev.png" alt="Angry dev" class="place bottom left">
+    </section>
+
+    <section class="slide">
+        <h2 class="shout shrink" style="padding-left: 75px; margin-top: -25px;">User</h2>
+        <img style="left: 35px; bottom: 45px; width: 32%" src="pictures/user.png" alt="Angry dev"
+            class="place bottom left">
+    </section>
+
+    <section class="slide">
+        <h2>Simple component, counter</h2>
+
+        <div class="counter">
+            <div class="counter-val">
+                0
+            </div>
+            <div class="counter-buttons">
+                <button class="btn-add">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                        id="Capa_1" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 510 510"
+                        xml:space="preserve" class="">
+                        <g transform="matrix(0.99 0 0 0.99 2.55 2.55)">
+                            <g>
+                                <g id="add-circle">
+                                    <path
+                                        d="M255,0C114.75,0,0,114.75,0,255s114.75,255,255,255s255-114.75,255-255S395.25,0,255,0z M382.5,280.5h-102v102h-51v-102    h-102v-51h102v-102h51v102h102V280.5z"
+                                        data-original="#000000" class="active-path" data-old_color="#000000"
+                                        fill="#DF4576" />
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </button>
+                <button class="btn-remove">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                        id="Capa_1" x="0px" y="0px" viewBox="0 0 16 16" xml:space="preserve" width="50px" height="50px"
+                        class="">
+                        <g transform="matrix(0.989505 0 0 0.989505 0.0839591 0.0839591)">
+                            <g>
+                                <path d="M8,0C3.582,0,0,3.582,0,8s3.582,8,8,8s8-3.582,8-8S12.418,0,8,0z M12,9H4V7h8V9z"
+                                    data-original="#030104" class="active-path" data-old_color="#030104"
+                                    fill="#27E8A7" />
+                            </g>
+                        </g>
+                    </svg>
+
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>For developers</h2>
+        <img style="margin-left: 185px;" src="pictures/for-dev-code.jpg" alt="For developers will look like code">
+        <img src="pictures/angry-dev.png" alt="Angry dev" class="place bottom left">
+    </section>
+
+
+    <section class="slide">
+        <h2>For users with poor eyesight</h2>
+
+        <div class="counter blured">
+            <div class="counter-val">
+                0
+            </div>
+            <div class="counter-buttons">
+                <button class="btn-add">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                        id="Capa_1" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 510 510"
+                        xml:space="preserve" class="">
+                        <g transform="matrix(0.99 0 0 0.99 2.55 2.55)">
+                            <g>
+                                <g id="add-circle">
+                                    <path
+                                        d="M255,0C114.75,0,0,114.75,0,255s114.75,255,255,255s255-114.75,255-255S395.25,0,255,0z M382.5,280.5h-102v102h-51v-102    h-102v-51h102v-102h51v102h102V280.5z"
+                                        data-original="#000000" class="active-path" data-old_color="#000000"
+                                        fill="#DF4576" />
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </button>
+                <button class="btn-remove">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                        id="Capa_1" x="0px" y="0px" viewBox="0 0 16 16" xml:space="preserve" width="50px" height="50px"
+                        class="">
+                        <g transform="matrix(0.989505 0 0 0.989505 0.0839591 0.0839591)">
+                            <g>
+                                <path d="M8,0C3.582,0,0,3.582,0,8s3.582,8,8,8s8-3.582,8-8S12.418,0,8,0z M12,9H4V7h8V9z"
+                                    data-original="#030104" class="active-path" data-old_color="#030104"
+                                    fill="#27E8A7" />
+                            </g>
+                        </g>
+                    </svg>
+
+                </button>
+            </div>
+        </div>
+        <img style="left: 35px; bottom: 45px; width: 15%" src="pictures/user.png" alt="Angry dev"
+            class="place bottom left">
+    </section>
+
+
+    <section class="slide">
+        <h2>Blind users</h2>
+        <img src="pictures/for-blind.jpg" alt="Icon hearing" class="place left">
+        <img src="pictures/hearing-no.png" alt="Icon hearing" class="place bottom right" style="width: 33%">
+    </section>
+
+    <section class="slide">
+        <img src="pictures/push-red.png" alt="Icon hearing" class="cover" width="100%">
+    </section>
+
+    <section class="slide">
+        <h2>Accessibility aspects</h2>
+        <div class="columns two">
+            <p>
+                <b>Mobility</b><br>
+                - control via buttons <br>
+                - focus traps <br>
+                - shortcuts, eg ctrl-z <br>
+            </p>
+            <p>
+                <b>Vision</b><br>
+                - color contrast <br>
+                - readability for a11y <br>
+                - ux/ui <br>
+            </p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>User can see selected / hovered</h2>
+
+        <div class="counter blured normal">
+            <div class="counter-val">
+                0
+            </div>
+            <div class="counter-buttons">
+                <button class="btn-add">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                        id="Capa_1" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 510 510"
+                        xml:space="preserve" class="">
+                        <g transform="matrix(0.99 0 0 0.99 2.55 2.55)">
+                            <g>
+                                <g id="add-circle">
+                                    <path
+                                        d="M255,0C114.75,0,0,114.75,0,255s114.75,255,255,255s255-114.75,255-255S395.25,0,255,0z M382.5,280.5h-102v102h-51v-102    h-102v-51h102v-102h51v102h102V280.5z"
+                                        data-original="#000000" class="active-path" data-old_color="#000000"
+                                        fill="#DF4576" />
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </button>
+                <button class="btn-remove">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                        id="Capa_1" x="0px" y="0px" viewBox="0 0 16 16" xml:space="preserve" width="50px" height="50px"
+                        class="">
+                        <g transform="matrix(0.989505 0 0 0.989505 0.0839591 0.0839591)">
+                            <g>
+                                <path d="M8,0C3.582,0,0,3.582,0,8s3.582,8,8,8s8-3.582,8-8S12.418,0,8,0z M12,9H4V7h8V9z"
+                                    data-original="#030104" class="active-path" data-old_color="#030104"
+                                    fill="#27E8A7" />
+                            </g>
+                        </g>
+                    </svg>
+
+                </button>
+            </div>
+        </div>
+        <img style="left: 35px; bottom: 45px; width: 15%" src="pictures/user.png" alt="Angry dev"
+            class="place bottom left">
+    </section>
+
+
+    <section class="slide" id="code">
+        <h2>Blind users</h2>
+        <pre>
+            <code>&lt;span class="val" <mark>aria-live="assertive"</mark> &gt; 0 &lt;/span&gt;</code>
+            <code>&lt;button <mark>aria-label="Increase count" ...</mark></code>
+            <code>&lt;button <mark>aria-label="Decrease count" ...</mark></code>
+        </pre>
+
+        <style>
+        #code code {
+            margin-bottom: 25px;
+        }
+        </style>
+    </section>
+
+    <section class="slide">
+        <h2>Blind users can use it now</h2>
+        <img src="pictures/for-blind-ok.jpg" alt="Icon hearing" class="place left">
+        <img src="pictures/hearing.png" alt="Icon hearing" class="place bottom right" style="width: 33%">
+    </section>
+
+
+    <section class="slide" id="see-more">
+        <h2 style="text-align: center">Thanks</h2>
+        <img src="pictures/qr-code.gif" class="place bottom" alt="qr code" style="margin-bottom: 20px">
+    </section>
+
+    <div class="progress"></div>
+
+    <script src="shower/shower.min.js"></script>
+
+    <script>
+        const counters = document.getElementsByClassName('counter');
+        for (let i = 0; i < counters.length; i++) {
+            const element = counters[i];
+            const counter = element.getElementsByClassName('counter-val')[0];
+            const add = element.getElementsByClassName('btn-add')[0];
+            const rem = element.getElementsByClassName('btn-remove')[0];
+            add.addEventListener('click', () => {
+                const cur = (+counter.innerText);
+                counter.innerText = (cur + 1)
+            })
+            rem.addEventListener('click', () => {
+                const cur = (+counter.innerText);
+                counter.innerText = (cur - 1)
+            })
+        }
+    </script>
+
+</body>
+
+</html>
